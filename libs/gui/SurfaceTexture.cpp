@@ -46,12 +46,12 @@
 // implicit cross-process synchronization to prevent the buffer from being
 // written to before the buffer has (a) been detached from the GL texture and
 // (b) all GL reads from the buffer have completed.
-#ifdef ALLOW_DEQUEUE_CURRENT_BUFFER
-#define FLAG_ALLOW_DEQUEUE_CURRENT_BUFFER    true
-#warning "ALLOW_DEQUEUE_CURRENT_BUFFER enabled"
-#else
+//#ifdef ALLOW_DEQUEUE_CURRENT_BUFFER
+//#define FLAG_ALLOW_DEQUEUE_CURRENT_BUFFER    true
+//#warning "ALLOW_DEQUEUE_CURRENT_BUFFER enabled"
+//#else
 #define FLAG_ALLOW_DEQUEUE_CURRENT_BUFFER    false
-#endif
+//#endif
 
 // This compile option makes SurfaceTexture use the EGL_KHR_fence_sync extension
 // to synchronize access to the buffers.  It will cause dequeueBuffer to stall,
