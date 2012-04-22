@@ -591,6 +591,10 @@ public class KeyEvent extends InputEvent implements Parcelable {
     /** Key code constant: Calculator special function key.
      * Used to launch a calculator application. */
     public static final int KEYCODE_CALCULATOR      = 210;
+    /** Key code constant: Thinkpad Tablet special function key.
+     * Used to lock Rotation/Touchinput */
+    public static final int KEYCODE_AUTO_ROTATION   = 211;
+    public static final int KEYCODE_TOUCH_DISABLER  = 212;
 
     private static final int LAST_KEYCODE           = KEYCODE_CALCULATOR;
 
@@ -825,6 +829,8 @@ public class KeyEvent extends InputEvent implements Parcelable {
         names.append(KEYCODE_CALENDAR, "KEYCODE_CALENDAR");
         names.append(KEYCODE_MUSIC, "KEYCODE_MUSIC");
         names.append(KEYCODE_CALCULATOR, "KEYCODE_CALCULATOR");
+        names.append(KEYCODE_AUTO_ROTATION, "KEYCODE_AUTO_ROTATION");
+        names.append(KEYCODE_TOUCH_DISABLER, "KEYCODE_TOUCH_DISABLER");
     };
 
     // Symbolic names of all metakeys in bit order from least significant to most significant.
