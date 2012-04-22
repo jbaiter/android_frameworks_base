@@ -62,6 +62,9 @@ namespace android {
 // Maximum number of slots supported when using the slot-based Multitouch Protocol B.
 static const size_t MAX_SLOTS = 32;
 
+// --- TPT Global vars ---
+int touch_screen_disabled = 0;
+
 // --- Static Functions ---
 
 template<typename T>
@@ -1865,6 +1868,19 @@ void KeyboardInputMapper::process(const RawEvent* rawEvent) {
     switch (rawEvent->type) {
     case EV_KEY: {
         int32_t scanCode = rawEvent->scanCode;
+	//TPT
+	if (rawEvent->keyCode == 0x00d4 && rawEvent->value==0x00000001) {
+		if(touch_screen_disabled) {
+                     property_set("tpt.touchscreen.enabled", "0");
+		     touch_screen_disabled = 0;
+		     LOGD("TouchScreenDisabled enabled: %d",touch_screen_disabled);
+		} else {
+		     property_set("tpt.touchscreen.enabled", "1");
+                     touch_screen_disabled = 1;
+		     LOGD("TouchScreenDisabled disabled: %d",touch_screen_disabled);
+		}
+	}
+	//TPT End
         if (isKeyboardOrGamepadKey(scanCode)) {
             processKey(rawEvent->when, rawEvent->value != 0, rawEvent->keyCode, scanCode,
                     rawEvent->flags);
@@ -2666,7 +2682,13 @@ void TouchInputMapper::configureSurface(nsecs_t when, bool* outResetNeeded) {
         mDeviceMode = DEVICE_MODE_POINTER;
     } else if (mParameters.deviceType == Parameters::DEVICE_TYPE_TOUCH_SCREEN
             && mParameters.associatedDisplayId >= 0) {
-        mSource = AINPUT_SOURCE_TOUCHSCREEN;
+	//TPT
+        if(getDeviceId()==2) {
+            mSource = AINPUT_SOURCE_STYLUS;
+        } else {
+            mSource = AINPUT_SOURCE_TOUCHSCREEN;
+        }
+	//TPT END
         mDeviceMode = DEVICE_MODE_DIRECT;
     } else {
         mSource = AINPUT_SOURCE_TOUCHPAD;
@@ -5598,7 +5620,9 @@ void MultiTouchInputMapper::reset(nsecs_t when) {
 
 void MultiTouchInputMapper::process(const RawEvent* rawEvent) {
     TouchInputMapper::process(rawEvent);
-
+    //TPT
+    if(touch_screen_disabled) return;
+    //TPT End
     mMultiTouchMotionAccumulator.process(rawEvent);
 }
 
