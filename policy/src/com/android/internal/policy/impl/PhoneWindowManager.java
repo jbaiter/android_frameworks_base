@@ -752,6 +752,24 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     };
 
+	//TPT
+    void showToast(final String i) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+        		CharSequence text = "Error";
+
+        		text = i;
+
+        		int duration = Toast.LENGTH_SHORT;
+
+        		Toast toast = Toast.makeText(mContext, text, duration);
+        		toast.show();
+            }
+        });
+    }
+	//TPT END
+
     void showGlobalActionsDialog() {
         if (mGlobalActions == null) {
             mGlobalActions = new GlobalActions(mContext);
@@ -1737,7 +1755,25 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mHandler.postDelayed(mBackLongPress, ViewConfiguration.getGlobalActionKeyTimeout());
                 }
             }
-        }
+        } else if (keyCode == KeyEvent.KEYCODE_AUTO_ROTATION && down) { //TPT start
+            int ret = Settings.System.getInt(mContext.getContentResolver(), 
+                Settings.System.ACCELEROMETER_ROTATION, 0);
+
+            try {
+                if(ret == 0){
+                    mWindowManager.thawRotation();
+                    showToast("Auto Rotation Enabled");
+                } else {
+                    mWindowManager.freezeRotation(-1);
+                    showToast("Auto Rotation Disabled");
+                }
+            } catch (RemoteException exc) {
+                showToast("Auto Rotation Toggle Error");
+                Log.w(TAG, "Unable to save auto-rotate setting");
+            }
+        } else if (keyCode == KeyEvent.KEYCODE_TOUCH_DISABLER && down) {
+            showToast("Touchscreen Toggled");
+        }//TPT End
 
         // Shortcuts are invoked through Search+key, so intercept those here
         // Any printing key that is chorded with Search should be consumed
