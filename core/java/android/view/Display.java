@@ -25,6 +25,10 @@ import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Slog;
 
+import java.lang.Thread;
+import java.lang.StackTraceElement;
+import android.util.Log;
+
 /**
  * Provides information about the display size and density.
  */
@@ -353,12 +357,26 @@ public class Display {
      */
     public void getMetricsWithSize(DisplayMetrics outMetrics,
             int width, int height) {
-        outMetrics.densityDpi   = (int)((mDensity*DisplayMetrics.DENSITY_DEFAULT)+.5f);
+
+	StackTraceElement[] eA = Thread.currentThread().getStackTrace();
+	int i = 0;
+	
+	float tmpDensity = mDensity;
+
+	for (StackTraceElement e : eA){
+		if(e.getClassName().indexOf("finsky") != -1){
+			Log.i("Display","Trace Class Nr."+ i + " " + e.getClassName());
+			tmpDensity = DisplayMetrics.DENSITY_DEFAULT;
+		}
+		i++;
+	}
+
+        outMetrics.densityDpi   = (int)((tmpDensity*DisplayMetrics.DENSITY_DEFAULT)+.5f);
 
         outMetrics.noncompatWidthPixels  = outMetrics.widthPixels = width;
         outMetrics.noncompatHeightPixels = outMetrics.heightPixels = height;
 
-        outMetrics.density = outMetrics.noncompatDensity = mDensity;
+        outMetrics.density = outMetrics.noncompatDensity = tmpDensity;
         outMetrics.scaledDensity = outMetrics.noncompatScaledDensity = outMetrics.density;
         outMetrics.xdpi = outMetrics.noncompatXdpi = mDpiX;
         outMetrics.ydpi = outMetrics.noncompatYdpi = mDpiY;
