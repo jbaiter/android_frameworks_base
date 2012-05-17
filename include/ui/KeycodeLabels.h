@@ -235,8 +235,16 @@ static const KeycodeLabel KEYCODES[] = {
     { "CALENDAR", 208 },
     { "MUSIC", 209 },
     { "CALCULATOR", 210 },
-    { "AUTO_ROTATION", 211},
-    { "TOUCH_DISABLER", 212},
+    { "TOGGLE_WIFI", 211 },
+    { "TOGGLE_BT", 212 },
+    { "TOGGLE_TOUCHPAD", 213 },
+    { "BRIGHTNESS_DOWN", 214 },
+    { "BRIGHTNESS_UP", 215 },
+    { "BRIGHTNESS_AUTO", 216 },
+    { "SCREENSHOT", 217 },
+    { "AUTO_ROTATION", 218},
+    { "TOUCH_DISABLER", 219},
+
     // NOTE: If you add a new keycode here you must also add it to several other files.
     //       Refer to frameworks/base/core/java/android/view/KeyEvent.java for the full list.
 

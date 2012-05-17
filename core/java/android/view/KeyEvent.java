@@ -596,7 +596,15 @@ public class KeyEvent extends InputEvent implements Parcelable {
     public static final int KEYCODE_AUTO_ROTATION   = 211;
     public static final int KEYCODE_TOUCH_DISABLER  = 212;
 
-    private static final int LAST_KEYCODE           = KEYCODE_CALCULATOR;
+    public static final int KEYCODE_TOGGLE_WIFI     = 211;
+    public static final int KEYCODE_TOGGLE_BT       = 212;
+    public static final int KEYCODE_TOGGLE_TOUCHPAD = 213;
+    public static final int KEYCODE_BRIGHTNESS_DOWN = 214;
+    public static final int KEYCODE_BRIGHTNESS_UP   = 215;
+    public static final int KEYCODE_BRIGHTNESS_AUTO = 216;
+    public static final int KEYCODE_SCREENSHOT      = 217;
+
+    private static final int LAST_KEYCODE           = KEYCODE_SCREENSHOT;
 
     // NOTE: If you add a new keycode here you must also add it to:
     //  isSystem()
@@ -829,6 +837,13 @@ public class KeyEvent extends InputEvent implements Parcelable {
         names.append(KEYCODE_CALENDAR, "KEYCODE_CALENDAR");
         names.append(KEYCODE_MUSIC, "KEYCODE_MUSIC");
         names.append(KEYCODE_CALCULATOR, "KEYCODE_CALCULATOR");
+        names.append(KEYCODE_TOGGLE_WIFI, "KEYCODE_TOGGLE_WIFI");
+        names.append(KEYCODE_TOGGLE_BT, "KEYCODE_TOGGLE_BT");
+        names.append(KEYCODE_TOGGLE_TOUCHPAD, "KEYCODE_TOGGLE_TOUCHPAD");
+        names.append(KEYCODE_BRIGHTNESS_DOWN, "KEYCODE_BRIGHTNESS_DOWN");
+        names.append(KEYCODE_BRIGHTNESS_UP, "KEYCODE_BRIGHTNESS_UP");
+        names.append(KEYCODE_BRIGHTNESS_AUTO, "KEYCODE_BRIGHTNESS_AUTO");
+        names.append(KEYCODE_SCREENSHOT, "KEYCODE_SCREENSHOT");
         names.append(KEYCODE_AUTO_ROTATION, "KEYCODE_AUTO_ROTATION");
         names.append(KEYCODE_TOUCH_DISABLER, "KEYCODE_TOUCH_DISABLER");
     };
