@@ -54,7 +54,7 @@ public class Power
     /**
      * Brightness value for dim backlight
      */
-    public static final int BRIGHTNESS_DIM = 20;
+    public static final int BRIGHTNESS_DIM = 5;
 
     /**
      * Brightness value for fully on
