@@ -1870,7 +1870,7 @@ void KeyboardInputMapper::process(const RawEvent* rawEvent) {
     case EV_KEY: {
         int32_t scanCode = rawEvent->scanCode;
 	//TPT
-	if (rawEvent->keyCode == 0x00d4 && rawEvent->value==0x00000001) {
+	if (rawEvent->keyCode == 0x00db && rawEvent->value==0x00000001) {
 		if(touch_screen_disabled) {
                      property_set("tpt.touchscreen.enabled", "0");
 		     touch_screen_disabled = 0;

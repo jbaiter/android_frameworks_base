@@ -593,9 +593,6 @@ public class KeyEvent extends InputEvent implements Parcelable {
     public static final int KEYCODE_CALCULATOR      = 210;
     /** Key code constant: Thinkpad Tablet special function key.
      * Used to lock Rotation/Touchinput */
-    public static final int KEYCODE_AUTO_ROTATION   = 211;
-    public static final int KEYCODE_TOUCH_DISABLER  = 212;
-
     public static final int KEYCODE_TOGGLE_WIFI     = 211;
     public static final int KEYCODE_TOGGLE_BT       = 212;
     public static final int KEYCODE_TOGGLE_TOUCHPAD = 213;
@@ -603,8 +600,12 @@ public class KeyEvent extends InputEvent implements Parcelable {
     public static final int KEYCODE_BRIGHTNESS_UP   = 215;
     public static final int KEYCODE_BRIGHTNESS_AUTO = 216;
     public static final int KEYCODE_SCREENSHOT      = 217;
+    public static final int KEYCODE_AUTO_ROTATION   = 218;
+    public static final int KEYCODE_TOUCH_DISABLER  = 219;
 
-    private static final int LAST_KEYCODE           = KEYCODE_SCREENSHOT;
+
+
+    private static final int LAST_KEYCODE           = KEYCODE_TOUCH_DISABLER;
 
     // NOTE: If you add a new keycode here you must also add it to:
     //  isSystem()
